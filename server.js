@@ -9,7 +9,7 @@ const session = require('express-session')
 const MongoStore = require('connect-mongo')
 
 const authController = require('./controllers/auth.js')
-const listingsController = require('./controllers/listings.js')
+const listingsController = require('./controllers/cars.js')
 
 const port = process.env.PORT ? process.env.PORT : '3000'
 
