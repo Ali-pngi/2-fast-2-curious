@@ -6,10 +6,11 @@ const mongoose = require('mongoose')
 const methodOverride = require('method-override')
 const morgan = require('morgan')
 const session = require('express-session')
-// const MongoStore = require('connect-mongo')
+const MongoStore = require('connect-mongo')
 
 const authController = require('./controllers/auth.js')
 const carsController = require('./controllers/cars.js')
+const isSignedIn = require('./middleware/is-signed-in.js')
 
 const port = process.env.PORT ? process.env.PORT : '3000'
 
@@ -27,9 +28,9 @@ app.use(
     secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: true,
-    // store: MongoStore.create({
-    //   mongoUrl: process.env.MONGODB_URI
-    // })
+    store: MongoStore.create({
+      mongoUrl: process.env.MONGODB_URI
+    })
   })
 )
 app.set('view engine', 'ejs')
@@ -40,6 +41,9 @@ app.get('/', (req, res) => {
       user: req.session.user
     });
   });
+
+  app.use('/auth', authController);
+  app.use('/cars', isSignedIn, carsController)
 
   app.listen(port, () => {
     console.log(`Server is running on port ${port}`);
