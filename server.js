@@ -5,6 +5,7 @@ const app = express()
 const mongoose = require('mongoose')
 const methodOverride = require('method-override')
 const morgan = require('morgan')
+const path = require("path")
 const session = require('express-session')
 const MongoStore = require('connect-mongo')
 
@@ -34,6 +35,8 @@ app.use(
     })
   })
 )
+
+app.use(express.static(path.join(__dirname, "public")))
 
 app.use((req, res, next) => {
     res.locals.user = req.session.user;
