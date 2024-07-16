@@ -28,9 +28,9 @@ const carSchema = mongoose.Schema ({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User',
     },
-    // created_at: {
-    //     type: timestamp
-    // },
+    photo: {
+        type: String,
+    },
     owner: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User',

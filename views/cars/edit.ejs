@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edit Car</title>
+</head>
+<body>
+    <%- include('../partials/navbar.ejs') %>
+    <h1>Edit Car</h1>
+    <form action="/cars/<%= car._id %>?_method=PUT" method="POST" enctype="multipart/form-data">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" value="<%= car.name %>" required>
+        
+        <label for="make">Make:</label>
+        <input type="text" id="make" name="make" value="<%= car.make %>" required>
+        
+        <label for="colour">Colour:</label>
+        <input type="text" id="colour" name="colour" value="<%= car.colour %>" required>
+        
+        <label for="drivetrain">Drivetrain:</label>
+        <input type="text" id="drivetrain" name="drivetrain" value="<%= car.drivetrain %>" required>
+        
+        <label for="year">Year:</label>
+        <input type="number" id="year" name="year" value="<%= car.year %>" required>
+        
+        <label for="location">Location:</label>
+        <input type="text" id="location" name="location" value="<%= car.location %>">
+
+        <label for="carImage">Car Image:</label>
+        <input type="file" id="carImage" name="carImage">
+
+        <button type="submit">Save Changes</button>
+    </form>
+</body>
+</html>

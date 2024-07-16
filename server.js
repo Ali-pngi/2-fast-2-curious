@@ -10,6 +10,7 @@ const MongoStore = require('connect-mongo')
 
 const authController = require('./controllers/auth.js')
 const carsController = require('./controllers/cars.js')
+const profileController = require('./controllers/profile.js')
 const isSignedIn = require('./middleware/is-signed-in.js')
 
 const port = process.env.PORT ? process.env.PORT : '3000'
@@ -33,6 +34,12 @@ app.use(
     })
   })
 )
+
+app.use((req, res, next) => {
+    res.locals.user = req.session.user;
+    next();
+  });
+
 app.set('view engine', 'ejs')
 app.set('views', './views')
 
@@ -43,6 +50,7 @@ app.get('/', (req, res) => {
   })
 
   app.use('/auth', authController)
+  
   app.use('/cars', isSignedIn, carsController)
   app.use('/profile', isSignedIn, profileController)
   

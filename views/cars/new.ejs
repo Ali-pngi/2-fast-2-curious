@@ -4,6 +4,7 @@
     <title>Add a New Car</title>
 </head>
 <body>
+    <%- include('../partials/_navbar.ejs') %>
     <h1>Add a New Car</h1>
     <form action="/cars" method="POST">
         <label for="name">Name:</label>
@@ -30,6 +31,9 @@
         <input type="text" id="location" name="location">
         <br>
 
+        <label for="carImage">Car Image:</label>
+        <input type="file" id="carImage" name="carImage">
+        <br>
         <button type="submit">Add Car</button>
     </form>
     <a href="/cars">Back to list</a>
