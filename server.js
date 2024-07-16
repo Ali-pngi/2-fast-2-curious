@@ -20,7 +20,7 @@ mongoose.connection.on('connected', () => {
   console.log(`Connected to MongoDB ${mongoose.connection.name}.`)
 })
 
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({ extended: false }))
 app.use(methodOverride('_method'))
 app.use(morgan('dev'))
 app.use(
@@ -39,14 +39,19 @@ app.set('views', './views')
 app.get('/', (req, res) => {
     res.render('index.ejs', {
       user: req.session.user
-    });
-  });
+    })
+  })
 
-  app.use('/auth', authController);
+  app.use('/auth', authController)
   app.use('/cars', isSignedIn, carsController)
+  app.use('/profile', isSignedIn, profileController)
+  
+  app.use('*', (req, res) => {
+    res.status(404).render('404.ejs')
+  })
 
   app.listen(port, () => {
-    console.log(`Server is running on port ${port}`);
-  });
+    console.log(`Server is running on port ${port}`)
+  })
 
 

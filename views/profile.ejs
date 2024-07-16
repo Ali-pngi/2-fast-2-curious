@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Profile</title>
+</head>
+<body>
+    <h1>Welcome, <%= user.username %>!</h1>
+
+    <h2>Your Cars</h2>
+    <ul>
+        <% carsOwned.forEach(car => { %>
+            <li>
+                <h3><%= car.name %></h3>
+                <p>Make: <%= car.make %></p>
+                <p>Color: <%= car.colour %></p>
+                <p>Year: <%= car.year %></p>
+                <p>Drivetrain: <%= car.drivetrain %></p>
+                <p>Location: <%= car.location %></p>
+            </li>
+        <% }) %>
+    </ul>
+
+    <h2>Favorited Cars</h2>
+    <ul>
+        <% favoritedCars.forEach(car => { %>
+            <li>
+                <h3><%= car.name %></h3>
+                <p>Make: <%= car.make %></p>
+                <p>Color: <%= car.colour %></p>
+                <p>Year: <%= car.year %></p>
+                <p>Drivetrain: <%= car.drivetrain %></p>
+                <p>Location: <%= car.location %></p>
+            </li>
+        <% }) %>
+    </ul>
+</body>
+</html>
