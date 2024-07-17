@@ -1,81 +1,105 @@
+/* General Styles */
 body {
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background-color: gainsboro;
-    font-family: Arial, sans-serif;
-}
-
-.container {
-    width: 80%;
-    height: 80%;
-    max-width: 1200px;
-    background-color: white;
-    border: 1px solid #ccc;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-}
-
-header {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin-top: 50px;
-    margin-bottom: 20px;
+    height: 80%;
+    background-color: gainsboro;
+    background-image: url(./assets/backgrounds/car-background1.webp);
+    background-size: auto;
+    background-repeat: no-repeat;
 }
 
-nav {
+button {
+    padding: 5px;
+    border-radius: 15px;
+    margin: 20px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: cornflowerblue;
+}
+
+header{
+    
     display: flex;
-    gap: 10px;
+    align-items: center;
+    flex-direction: column;
+    
 }
 
-nav a {
-    text-decoration: none;
-    color: black;
-    padding: 10px 20px;
-    border-radius: 5px;
-    transition: background-color 0.3s;
+.container {
+    display: flex;
+    min-height: 80%;
+    padding: 15px;
+    height: 80vh;
+    width: 80%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    justify-content: space-evenly;
+    background-color: rgb(220, 220, 220, 0.85);
 }
 
-nav a:hover {
-    background-color: lightgray;
+p {
+    border: 2px solid black;
+    border-radius: 25px;
+    padding: 10px;
+    font-family: "Nunito", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 200;
+    font-style: normal;
 }
+
+/* Navbar Styles */
+.navbar  {
+    display: flex;
+    border: 2px solid black;
+    border-radius: 50px;
+    padding: 5px;
+    justify-content: space-evenly;
+    font-family: "Nunito", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 200;
+    font-style: normal;
+}
+
+/* Home Page Styles */
 
 .title {
     text-align: center;
+    width: 100%;
+    font-family: "Nunito", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 200;
+    font-style: normal;
+   
 }
 
-.welcome-message {
-    text-align: center;
-    margin-bottom: 20px;
-    padding: 20px;
-    border: 1px solid black;
-    border-radius: 10px;
+#main-title{
+        font-family: "Faster One", system-ui;
+        font-weight: 200;
+        font-style: normal;
+        
+      
+      
 }
 
-.auth-buttons {
+.center-content {
     display: flex;
     justify-content: center;
-    gap: 20px;
+    align-items: center;
+    flex-direction: column;
+    height: 80vh;
 }
 
-.button {
-    padding: 10px 20px;
-    border: none;
-    border-radius: 15px;
-    background-color: #007bff;
-    color: white;
-    text-decoration: none;
-    transition: background-color 0.3s;
-}
-
-.button:hover {
-    background-color: #0056b3;
+/* Show All Cars Page Styles */
+.page-container {
+    display: flex;
+    width: 80%;
+    margin-top: 20px;
 }
 
 .sidebar {
@@ -95,6 +119,7 @@ nav a:hover {
     text-align: center;
     text-decoration: none;
     color: black;
+    background-color: white;
 }
 
 .main-content {
@@ -119,11 +144,4 @@ nav a:hover {
 
 .car-card h2, .car-card p {
     margin: 10px 0;
-}
-
-button {
-    padding: 5px 10px;
-    border-radius: 15px;
-    margin-top: 10px;
-    cursor: pointer;
 }
