@@ -1,14 +1,14 @@
 const express = require('express')
 const router = express.Router()
-
 const Car = require('../models/car.js')
 
-router.get('/profile', async (req, res) => {
+router.get('/profile', async (req, res, next) => {
     try {
         // Check if user is logged in
         if (!req.session.user) {
-            return res.redirect('/auth/sign-in')
-        }
+            const error = new Error("User not logged in.") 
+            error.status = 401           
+            return next(error)}
 
         // Find cars created by the logged-in user
         const carsOwned = await Car.find({
@@ -19,16 +19,14 @@ router.get('/profile', async (req, res) => {
         const favoritedCars = await Car.find({
             favouritedByUser: req.session.user._id
         })
-
-        // Render the profile page with the cars data
+        
+        
         res.render('profile.ejs', {
             user: req.session.user,
             carsOwned: carsOwned,
             favoritedCars: favoritedCars
-        })
-    } catch (error) {
-        console.log(error)
-        res.redirect('/')
+        })    } catch (error) {
+        next(error); 
     }
 })
 

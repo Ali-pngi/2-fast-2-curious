@@ -4,11 +4,11 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 80%;
+    height: 100%;
     background-color: gainsboro;
-    background-image: url(./assets/backgrounds/car-background1.webp);
-    background-size: auto;
-    background-repeat: no-repeat;
+    background-image: url(./assets/gas-station.gif);
+    background-size: cover;
+    
 }
 
 button {
@@ -16,6 +16,10 @@ button {
     border-radius: 15px;
     margin: 20px;
     cursor: pointer;
+    font-family: "Nunito", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 300;
+    font-style: normal;
 }
 
 button:hover {
@@ -23,25 +27,39 @@ button:hover {
 }
 
 header{
-    
     display: flex;
-    align-items: center;
-    flex-direction: column;
-    
-}
-
-.container {
-    display: flex;
-    min-height: 80%;
-    padding: 15px;
-    height: 80vh;
-    width: 80%;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    justify-content: space-evenly;
-    background-color: rgb(220, 220, 220, 0.85);
+    background-color: rgb(220, 220, 220, 0.8);
+    font-family: "Nunito", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 200;
+    font-style: normal;
+    padding: 10px;
+    border-radius: 15px;
+    margin-top: 16px;
 }
+
+main{
+    display: flex;
+    background-color: rgb(220, 220, 220, 0.85);
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+    border-radius: 15px;
+    margin-top: 158px;
+}
+
+.search{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    
+
+}
+
+
 
 p {
     border: 2px solid black;
@@ -53,7 +71,16 @@ p {
     font-style: normal;
 }
 
-/* Navbar Styles */
+input {
+    border-radius: 15px;
+    font-family: "Nunito", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 200;
+    font-style: normal;
+    align-items: center;
+}
+
+
 .navbar  {
     display: flex;
     border: 2px solid black;
@@ -66,7 +93,19 @@ p {
     font-style: normal;
 }
 
-/* Home Page Styles */
+.options{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    border: 2px solid black;
+    padding: 5px;
+    border-radius: 15px;
+    background-color:gainsboro;
+    background-repeat: no-repeat;
+    background-size: auto;
+}
+
+
 
 .title {
     text-align: center;
@@ -95,53 +134,20 @@ p {
     height: 80vh;
 }
 
-/* Show All Cars Page Styles */
-.page-container {
-    display: flex;
-    width: 80%;
-    margin-top: 20px;
+.welcome-message{
+    font-family: "Nunito", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 200;
+    font-style: normal;
 }
 
-.sidebar {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    width: 20%;
-    border-right: 2px solid black;
-    padding: 10px;
+.auth-buttons{
+    
+    font-family: "Nunito", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 200;
+    font-style: normal;
 }
 
-.sidebar a {
-    margin: 10px 0;
-    padding: 10px;
-    border: 2px solid black;
-    border-radius: 10px;
-    text-align: center;
-    text-decoration: none;
-    color: black;
-    background-color: white;
-}
 
-.main-content {
-    width: 80%;
-    padding: 20px;
-}
 
-.cars-list {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-}
-
-.car-card {
-    width: 30%;
-    border: 2px solid black;
-    border-radius: 10px;
-    padding: 10px;
-    margin: 10px;
-    background-color: white;
-}
-
-.car-card h2, .car-card p {
-    margin: 10px 0;
-}

@@ -1,4 +1,5 @@
 <nav>
+  <div class="options">
   <% if (user) { %>
   <a href="/cars">View all Cars</a>
   <a href="/profile">Profile</a>
@@ -7,8 +8,11 @@
   <a href="/auth/sign-up">Sign Up</a>
   <a href="/auth/sign-in">Sign In</a>
   <% } %>
+</div>
+<div class="search">
   <form action="/cars/search" method="get" style="display: inline;">
     <input type="text" name="q" placeholder="Search cars" required>
     <button type="submit">Search</button>
 </form>
+</div>
 </nav>

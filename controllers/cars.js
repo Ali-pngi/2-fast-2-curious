@@ -9,7 +9,7 @@ router.get('/new', isSignedIn, (req, res) => {
     res.render('cars/new')
 })
 
-router.post('/', isSignedIn, upload, async (req, res) => {
+router.post('/', isSignedIn, upload, async (req, res, next) => {
     try {
         const car = new Car({
             ...req.body,
@@ -19,62 +19,68 @@ router.post('/', isSignedIn, upload, async (req, res) => {
         await car.save()
         res.redirect('/cars')
     } catch (error) {
-        console.log(error)
-        res.redirect('/404')
+        next(error)
     }
 })
 
 // Get all cars
-router.get('/', async (req, res) => {
+router.get('/', async (req, res, next) => {
     try {
         const cars = await Car.find().populate('owner favouritedByUser')
         res.render('cars/index', { cars })
     } catch (error) {
-        console.log(error)
-        res.redirect('/404')
+        next(error)
     }
 })
 
 // Get a specific car
-router.get('/:id', async (req, res) => {
+router.get('/:id', async (req, res, next) => {
     try {
         const car = await Car.findById(req.params.id).populate('owner favouritedByUser')
         if (!car) {
-            return res.status(404).redirect('/404')
+            const error = new Error('Car not found')
+            error.status = 404
+            return next(error)
         }
         res.render('cars/show', { car })
     } catch (error) {
-        console.log(error)
-        res.redirect('/404')
+        next(error)
     }
 })
 
 // Edit a specific car
-router.get('/:id/edit', isSignedIn, async (req, res) => {
+router.get('/:id/edit', isSignedIn, async (req, res, next) => {
     try {
         const car = await Car.findById(req.params.id)
         if (!car) {
-            return res.status(404).redirect('/404')
+            const error = new Error('Car not found')
+            error.status = 404
+            return next(error)
         }
         if (car.owner.toString() !== req.session.user._id.toString()) {
-            return res.status(403).redirect('/404')
+            const error = new Error('Forbidden')
+            error.status = 403
+            return next(error)
         }
         res.render('cars/edit', { car })
     } catch (error) {
-        console.log(error)
-        res.redirect('/404')
+        next(error)
     }
 })
 
 // Update a specific car
-router.put('/:id', isSignedIn, upload, async (req, res) => {
+router.put('/:id', isSignedIn, upload, async (req, res, next) => {
     try {
         const car = await Car.findById(req.params.id)
         if (!car) {
-            return res.status(404).redirect('/404')
+            const error = new Error('Car not found')
+            error.status = 404
+            return next(error)
         }
         if (car.owner.toString() !== req.session.user._id.toString()) {
-            return res.status(403).redirect('/404')
+            const error = new Error('Forbidden')
+            error.status = 403
+            return next(error)
         }
 
         const updates = {
@@ -87,55 +93,85 @@ router.put('/:id', isSignedIn, upload, async (req, res) => {
         await Car.findByIdAndUpdate(req.params.id, updates, { new: true })
         res.redirect(`/cars/${req.params.id}`)
     } catch (error) {
-        console.log(error)
-        res.redirect('/404')
+        next(error)
     }
 })
 
 // Delete a specific car
-router.delete('/:id', isSignedIn, async (req, res) => {
+router.delete('/:id', isSignedIn, async (req, res, next) => {
     try {
         const car = await Car.findById(req.params.id)
         if (!car) {
-            return res.status(404).redirect('/404')
+            const error = new Error('Car not found')
+            error.status = 404
+            return next(error)
         }
         if (car.owner.toString() !== req.session.user._id.toString()) {
-            return res.status(403).redirect('/404')
+            const error = new Error('Forbidden')
+            error.status = 403
+            return next(error)
         }
         await Car.findByIdAndDelete(req.params.id)
         res.redirect('/cars')
     } catch (error) {
-        console.log(error)
-        res.redirect('/404')
+        next(error)
     }
 })
 
 // Search for a specific car
-router.get('/search', async (req, res) => {
+router.get('/search', async (req, res, next) => {
     try {
         const query = req.query.q
-        const cars = await Car.find({ name: new RegExp(query, 'i') }).populate('owner favouritedByUser')
+        if (!query) {
+            const error = new Error('No search query provided')
+            error.status = 400
+            return next(error)
+        }
+
+        const searchRegex = new RegExp(query, 'i')
+        const yearQuery = parseInt(query)
+
+        const cars = await Car.find({
+            $or: [
+                { name: searchRegex },
+                { make: searchRegex },
+                { colour: searchRegex },
+                { drivetrain: searchRegex },
+                { year: !isNaN(yearQuery) ? yearQuery : undefined },
+                { location: searchRegex },
+            ]
+        }).populate('owner favouritedByUser')
+
         res.render('cars/index', { cars })
     } catch (error) {
-        console.log(error)
-        res.redirect('/404')
+        next(error)
     }
 })
 
 // Favourite a car
-router.post('/:id/favorite', isSignedIn, async (req, res) => {
-    try {
-        const car = await Car.findById(req.params.id);
-        if (!car) {
-            return res.redirect('/404');
+router.post('/cars', isSignedIn, (req, res) => {
+    upload(req, res, (err) => {
+        if (err) {
+            
+            return res.status(400).render('error.ejs', { error: err.message })
         }
-        car.favouritedByUser.addToSet(req.session.user._id);
-        await car.save();
-        res.redirect('/cars');
-    } catch (error) {
-        console.log(error);
-        res.redirect('/404');
-    }
+        try {
+            const newCar = new Car({
+                ...req.body,
+                owner: req.session.user._id,
+                photo: req.file ? `/uploads/${req.file.filename}` : null,
+            })
+            newCar.save()
+                .then(() => res.redirect('/cars'))
+                .catch((dbError) => {
+                    
+                    res.status(500).render('error.ejs', { error: dbError.message })
+                })
+        } catch (error) {
+            
+            res.status(500).render('error.ejs', { error: error.message })
+        }
+    })
 })
 
 module.exports = router

@@ -1,0 +1,97 @@
+/* cars.css */
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    background-color: gainsboro;
+    background-image: url(./assets/gas-station.gif);
+    background-size: cover;
+    
+}
+
+button {
+    padding: 5px;
+    border-radius: 15px;
+    margin: 20px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: cornflowerblue;
+}
+
+header{
+    
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    
+}
+
+
+
+p {
+    border: 2px solid black;
+    border-radius: 25px;
+    padding: 10px;
+    font-family: "Nunito", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 200;
+    font-style: normal;
+}
+
+
+.container {
+    min-height: 80vh; /* Adjust this value as needed */
+    padding: 20px;
+}
+
+.car-cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.car-card {
+    border: 2px solid black;
+    border-radius: 10px;
+    padding: 10px;
+    width: 200px;
+    text-align: center;
+    background-color: white;
+}
+
+.car-card img {
+    width: 100%;
+    border-radius: 10px;
+}
+
+.car-card h2 {
+    margin: 10px 0;
+}
+
+.car-card p {
+    margin: 5px 0;
+}
+
+.car-card a,
+.car-card button {
+    display: block;
+    margin: 10px auto;
+    padding: 5px;
+    border-radius: 5px;
+    text-decoration: none;
+    color: white;
+    background-color: black;
+    border: none;
+    cursor: pointer;
+}
+
+.car-card button:hover,
+.car-card a:hover {
+    background-color: gray;
+}

@@ -39,30 +39,37 @@ app.use(
 app.use(express.static(path.join(__dirname, "public")))
 
 app.use((req, res, next) => {
-    res.locals.user = req.session.user;
-    next();
-  });
+  res.locals.user = req.session.user
+  next()
+})
 
 app.set('view engine', 'ejs')
 app.set('views', './views')
 
 app.get('/', (req, res) => {
-    res.render('index.ejs', {
-      user: req.session.user
-    })
+  res.render('index.ejs', {
+    user: req.session.user
   })
+})
 
-  app.use('/auth', authController)
-  
-  app.use('/cars', isSignedIn, carsController)
-  app.use('/profile', isSignedIn, profileController)
-  
-  app.use('*', (req, res) => {
-    res.status(404).render('404.ejs')
-  })
+app.use('/auth', authController)
 
-  app.listen(port, () => {
-    console.log(`Server is running on port ${port}`)
-  })
+app.use('/cars', isSignedIn, carsController)
+app.use('/profile', isSignedIn, profileController)
+
+app.use('*', (req, res) => {
+  const error = new Error('Page Not Found')
+  error.status = 404
+  res.status(404).render('404.ejs', { error: error.message })
+})
+
+app.use((err, req, res, next) => {
+  const statusCode = err.status || 500
+  res.status(statusCode).render('404.ejs', { error: err.message })
+})
+
+app.listen(port, () => {
+  console.log(`Server is running on port ${port}`)
+})
 
 
