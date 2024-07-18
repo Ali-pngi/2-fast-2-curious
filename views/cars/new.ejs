@@ -3,45 +3,53 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>New Car Post</title>
+    <title>Create a New Car Post</title>
     <link rel="stylesheet" href="/stylesheets/edit.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Righteous&display=swap" rel="stylesheet">
 </head>
 <body>
-    <%- include('../partials/_navbar') %>
+    
+    <div class="sidebar">
+        <a href="/cars">Home page</a>
+        <a href="/cars/search">Search posts</a>
+        <a href="/profile">My posts</a>
+        <a href="/auth/sign-out">Sign out</a>
+    </div>
     <div class="container">
-        <div class="title">
-            <h1>Create a New Car Post</h1>
+        <div class="main-content">
+            <div class="title">
+                <h1>Create a New Car Post</h1>
+            </div>
+            <form action="/cars" method="POST" enctype="multipart/form-data" class="car-form">
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="make">Make</label>
+                    <input type="text" id="make" name="make" required>
+                </div>
+                <div class="form-group">
+                    <label for="colour">Colour</label>
+                    <input type="text" id="colour" name="colour" required>
+                </div>
+                <div class="form-group">
+                    <label for="drivetrain">Drivetrain</label>
+                    <input type="text" id="drivetrain" name="drivetrain" required>
+                </div>
+                <div class="form-group">
+                    <label for="location">Location</label>
+                    <input type="text" id="location" name="location">
+                </div>
+                <div class="form-group">
+                    <label for="photo">Upload Photo</label>
+                    <input type="file" id="photo" name="carImage">
+                </div>
+                <button type="submit" class="add-entry-btn">Add Entry</button>
+            </form>
         </div>
-        <form action="/cars" method="POST" enctype="multipart/form-data" class="car-form">
-            <div class="form-group">
-                <label for="name">Name</label>
-                <input type="text" id="name" name="name" required>
-            </div>
-            <div class="form-group">
-                <label for="make">Make</label>
-                <input type="text" id="make" name="make" required>
-            </div>
-            <div class="form-group">
-                <label for="colour">Colour</label>
-                <input type="text" id="colour" name="colour" required>
-            </div>
-            <div class="form-group">
-                <label for="drivetrain">Drivetrain</label>
-                <input type="text" id="drivetrain" name="drivetrain" required>
-            </div>
-            <div class="form-group">
-                <label for="location">Location</label>
-                <input type="text" id="location" name="location">
-            </div>
-            <div class="form-group">
-                <label for="photo">Upload Photo</label>
-                <input type="file" id="photo" name="carImage">
-            </div>
-            <button type="submit" class="add-entry-btn">Add Entry</button>
-        </form>
     </div>
 </body>
 </html>

@@ -1,0 +1,32 @@
+/* Common styles for navbar and sidebar */
+.navbar, .sidebar {
+    display: flex;
+    flex-direction: column;
+    
+    padding: 10px;
+}
+
+.navbar a, .sidebar a {
+    color: white;
+    text-decoration: none;
+    padding: 10px;
+    margin: 5px 0;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.navbar a:hover, .sidebar a:hover {
+    background-color: #575757;
+}
+
+/* Navbar specific styles */
+.navbar {
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.navbar-container {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}

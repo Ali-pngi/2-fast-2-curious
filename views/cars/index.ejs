@@ -19,31 +19,23 @@
             <a href="/auth/sign-out">Sign out</a>
         </div>
         <div class="main-content">
-            <div class="title">
-                <h1>All Cars</h1>
-            </div>
-            <div class="car-grid">
+            <h1>All Cars</h1>
+            <div class="cars-list">
                 <% cars.forEach(car => { %>
                 <div class="car-card">
-                    <% if (car.photo) { %>
-                        <img src="<%= car.photo %>" alt="Photo of <%= car.name %>">
-                    <% } %>
                     <h2><a href="/cars/<%= car._id %>"><%= car.name %></a></h2>
+                    <% if (car.photo) { %>
+                    <img src="<%= car.photo %>" alt="<%= car.name %>" class="car-photo">
+                    <% } %>
                     <p>Make: <%= car.make %></p>
                     <p>Colour: <%= car.colour %></p>
-                    <p>Drivetrain: <%= car.drivetrain %></p>
-                    <p>Year: <%= car.year %></p>
-                    <p>Location: <%= car.location %></p>
-                    <form class="favorite-form" action="/cars/<%= car._id %>/favorite" method="POST">
-                        <button type="submit" class="<%= car.favouritedByUser.includes(user._id) ? 'favorited' : '' %>">
-                            <%= car.favouritedByUser.includes(user._id) ? 'Favorited' : 'Favorite' %>
-                        </button>
+                    <form action="/cars/<%= car._id %>/favorite" method="POST">
+                        <button type="submit">Favorite</button>
                     </form>
                 </div>
                 <% }) %>
             </div>
         </div>
     </div>
-    <script src="/scripts/favorite.js"></script>
 </body>
 </html>

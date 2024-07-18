@@ -10,63 +10,63 @@
     <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Righteous&display=swap" rel="stylesheet">
 </head>
 <body>
-   
+    
     <div class="container">
         <div class="sidebar">
             <a href="/cars">Home page</a>
             <a href="/cars/search">Search posts</a>
-            <a href="/cars/new">New post</a>
+            <a href="/cars/new">New posts</a>
+            <a href="/profile">My posts</a>
             <a href="/auth/sign-out">Sign out</a>
         </div>
         <div class="main-content">
-            <div class="title">
-                <h1>Welcome, <%= user.username %>!</h1>
-            </div>
+            <h1>Welcome, <%= user.username %>!</h1>
 
             <h2>Your Cars</h2>
             <div class="car-grid">
                 <% carsOwned.forEach(car => { %>
-                <div class="car-card">
-                    <% if (car.photo) { %>
-                        <img src="<%= car.photo %>" alt="Photo of <%= car.name %>">
-                    <% } %>
-                    <h3><%= car.name %></h3>
-                    <p>Make: <%= car.make %></p>
-                    <p>Colour: <%= car.colour %></p>
-                    <p>Year: <%= car.year %></p>
-                    <p>Drivetrain: <%= car.drivetrain %></p>
-                    <p>Location: <%= car.location %></p>
-                    <div class="actions">
-                        <a href="/cars/<%= car._id %>/edit" class="edit-btn">Edit</a>
-                        <form action="/cars/<%= car._id %>?_method=DELETE" method="POST" class="delete-form">
-                            <button type="submit" class="delete-btn">Delete</button>
-                        </form>
+                    <div class="car-card">
+                        <h3><%= car.name %></h3>
+                        <% if (car.photo) { %>
+                        <img src="<%= car.photo %>" alt="<%= car.name %>" class="car-photo">
+                        <% } %>
+                        <p>Make: <%= car.make %></p>
+                        <p>Colour: <%= car.colour %></p>
+                        <p>Year: <%= car.year %></p>
+                        <p>Drivetrain: <%= car.drivetrain %></p>
+                        <p>Location: <%= car.location %></p>
+                        <div class="actions">
+                            <a href="/cars/<%= car._id %>/edit" class="edit-btn">Edit</a>
+                            <form action="/cars/<%= car._id %>?_method=DELETE" method="POST" style="display: inline;">
+                                <button type="submit" class="delete-btn">Delete</button>
+                            </form>
+                        </div>
                     </div>
-                </div>
                 <% }) %>
             </div>
 
             <h2>Favorited Cars</h2>
             <div class="car-grid">
                 <% favoritedCars.forEach(car => { %>
-                <div class="car-card">
-                    <% if (car.photo) { %>
-                        <img src="<%= car.photo %>" alt="Photo of <%= car.name %>">
-                    <% } %>
-                    <h3><%= car.name %></h3>
-                    <p>Make: <%= car.make %></p>
-                    <p>Colour: <%= car.colour %></p>
-                    <p>Year: <%= car.year %></p>
-                    <p>Drivetrain: <%= car.drivetrain %></p>
-                    <p>Location: <%= car.location %></p>
-                    <form action="/cars/<%= car._id %>/unfavorite" method="POST">
-                        <button type="submit" class="unfavorite-btn">Remove from Favorites</button>
-                    </form>
-                </div>
+                    <div class="car-card">
+                        <h3><%= car.name %></h3>
+                        <% if (car.photo) { %>
+                        <img src="<%= car.photo %>" alt="<%= car.name %>" class="car-photo">
+                        <% } %>
+                        <p>Make: <%= car.make %></p>
+                        <p>Colour: <%= car.colour %></p>
+                        <p>Year: <%= car.year %></p>
+                        <p>Drivetrain: <%= car.drivetrain %></p>
+                        <p>Location: <%= car.location %></p>
+                        <div class="actions">
+                            <form action="/cars/<%= car._id %>/unfavorite" method="POST" style="display: inline;">
+                                <button type="submit" class="unfavorite-btn">Unfavorite</button>
+                            </form>
+                        </div>
+                    </div>
                 <% }) %>
             </div>
         </div>
     </div>
-    <script src="/scripts/profile.js"></script>
 </body>
 </html>

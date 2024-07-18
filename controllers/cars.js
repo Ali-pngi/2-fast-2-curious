@@ -10,6 +10,11 @@ router.get('/new', isSignedIn, (req, res) => {
 })
 
 // Search for a specific car
+
+router.get('/search', isSignedIn, (req, res) => {
+    res.render('cars/search')
+})
+
 router.get('/search', async (req, res, next) => {
     try {
         const query = req.query.q
@@ -59,6 +64,20 @@ router.get('/:id', async (req, res, next) => {
             return next(error)
         }
         res.render('cars/show', { car })
+    } catch (error) {
+        next(error)
+    }
+})
+
+router.post('/', isSignedIn, upload, async (req, res, next) => {
+    try {
+        const car = new Car({
+            ...req.body,
+            owner: req.session.user._id,
+            photo: req.file ? `/uploads/${req.file.filename}` : undefined,
+        })
+        await car.save()
+        res.redirect('/cars')
     } catch (error) {
         next(error)
     }

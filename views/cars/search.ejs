@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Cars</title>
+    <link rel="stylesheet" href="/stylesheets/search.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Righteous&display=swap" rel="stylesheet">
+</head>
+<body>
+    
+    <div class="container">
+        <div class="sidebar">
+            <a href="/cars">Home page</a>
+            <a href="/cars/search">Search posts</a>
+            <a href="/profile">My posts</a>
+            <a href="/auth/sign-out">Sign out</a>
+        </div>
+        <div class="main-content">
+            <h1>Search for Cars</h1>
+            <form action="/cars/results" method="GET" class="search-form">
+                <input type="text" name="q" placeholder="Search for cars..." required>
+                <button type="submit">Search</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

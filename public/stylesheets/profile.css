@@ -1,27 +1,44 @@
-/* public/stylesheets/profile.css */
-
 body {
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
-    background-color: gainsboro;
+    min-height: 100vh;
+    background-color: rgba(220, 220, 220, 0.8);
+    background-image: url(./assets/gas-station.gif);
+    background-size: cover;
     font-family: 'Nunito', sans-serif;
+    margin: 0;
+}
+
+h1 {
+    background-color: rgba(220, 220, 220, 0.8);
+    border-radius: 50px;
+    font-family: "Faster One", system-ui;
+    font-weight: 200;
+    font-style: normal;
+    padding: 10px;
+    text-align: center;
 }
 
 .container {
     display: flex;
     width: 80%;
-    margin: auto;
-    background-color: white;
+    min-height: 80vh;
+    margin: 20px auto;
+    background-color: rgba(255, 255, 255, 0.8);
     border-radius: 15px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     overflow: hidden;
 }
 
 .sidebar {
-    width: 20%;
-    background-color: #f8f9fa;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 200px;
+    background-image: url(./assets/backgrounds/night-road.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
     padding: 20px;
     box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
 }
@@ -45,6 +62,7 @@ body {
 .main-content {
     flex: 1;
     padding: 20px;
+    overflow-y: auto;
 }
 
 .title {
