@@ -1,0 +1,70 @@
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    background-color: gainsboro;
+    background-image: url(./assets/gas-station.gif);
+    background-size: cover;
+    margin-top: 210px;
+    font-family: "Nunito", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 300;
+    font-style: normal;
+    
+}
+
+button {
+    padding: 5px;
+    border-radius: 15px;
+    margin: 20px;
+    cursor: pointer;
+    font-family: "Nunito", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 300;
+    font-style: normal;
+}
+
+button:hover {
+    background-color: cornflowerblue;
+}
+
+h1{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(220, 220, 220, 0.8);
+    font-family: "Nunito", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 200;
+    font-style: normal;
+    padding: 10px;
+    border-radius: 15px;
+    margin-top: 16px;
+}
+
+main{
+    display: flex;
+    background-color: rgb(220, 220, 220, 0.85);
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+    border-radius: 15px;
+    margin-top: 158px;
+}
+
+.search{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    
+
+}
+
+form{
+    padding-left: 10px;
+    border-radius: 15px;
+    background-color: rgb(220, 220, 220, 0.85)
+}

@@ -1,38 +1,50 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Edit Car</title>
-    <link rel="stylesheet" href="/stylesheets/style.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Car Post</title>
+    <link rel="stylesheet" href="/stylesheets/form.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Righteous&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Righteous&display=swap" rel="stylesheet">
 </head>
 <body>
-    <%- include('../partials/navbar.ejs') %>
-    <h1>Edit Car</h1>
-    <form action="/cars/<%= car._id %>?_method=PUT" method="POST" enctype="multipart/form-data">
-        <label for="name">Name:</label>
-        <input type="text" id="name" name="name" value="<%= car.name %>" required>
-        
-        <label for="make">Make:</label>
-        <input type="text" id="make" name="make" value="<%= car.make %>" required>
-        
-        <label for="colour">Colour:</label>
-        <input type="text" id="colour" name="colour" value="<%= car.colour %>" required>
-        
-        <label for="drivetrain">Drivetrain:</label>
-        <input type="text" id="drivetrain" name="drivetrain" value="<%= car.drivetrain %>" required>
-        
-        <label for="year">Year:</label>
-        <input type="number" id="year" name="year" value="<%= car.year %>" required>
-        
-        <label for="location">Location:</label>
-        <input type="text" id="location" name="location" value="<%= car.location %>">
-
-        <label for="carImage">Car Image:</label>
-        <input type="file" id="carImage" name="carImage">
-
-        <button type="submit">Save Changes</button>
-    </form>
+    <%- include('../partials/_navbar') %>
+    <div class="container">
+        <div class="title">
+            <h1>Edit Car Post</h1>
+        </div>
+        <form action="/cars/<%= car._id %>?_method=PUT" method="POST" enctype="multipart/form-data" class="car-form">
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" id="name" name="name" value="<%= car.name %>" required>
+            </div>
+            <div class="form-group">
+                <label for="make">Make</label>
+                <input type="text" id="make" name="make" value="<%= car.make %>" required>
+            </div>
+            <div class="form-group">
+                <label for="colour">Colour</label>
+                <input type="text" id="colour" name="colour" value="<%= car.colour %>" required>
+            </div>
+            <div class="form-group">
+                <label for="drivetrain">Drivetrain</label>
+                <input type="text" id="drivetrain" name="drivetrain" value="<%= car.drivetrain %>" required>
+            </div>
+            <div class="form-group">
+                <label for="location">Location</label>
+                <input type="text" id="location" name="location" value="<%= car.location %>">
+            </div>
+            <div class="form-group">
+                <label for="photo">Upload Photo</label>
+                <input type="file" id="photo" name="carImage">
+                <% if (car.photo) { %>
+                    <img src="<%= car.photo %>" alt="Current photo" class="current-photo">
+                <% } %>
+            </div>
+            <button type="submit" class="add-entry-btn">Update Entry</button>
+        </form>
+    </div>
 </body>
 </html>

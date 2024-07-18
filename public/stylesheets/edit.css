@@ -1,0 +1,74 @@
+/* public/stylesheets/form.css */
+
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-image: url(./assets/gas-station.gif);
+    background-size: cover;
+    background-repeat: no-repeat;
+    font-family: 'Nunito', sans-serif;
+}
+
+.container {
+    width: 80%;
+    margin: auto;
+    background-color: white;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+}
+
+.title {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.car-form {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label {
+    margin-bottom: 5px;
+}
+
+.form-group input {
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ced4da;
+}
+
+.form-group input[type="file"] {
+    border: none;
+    padding: 0;
+}
+
+.add-entry-btn {
+    grid-column: span 3;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+    background-color: #007bff;
+    text-align: center;
+    font-size: 16px;
+}
+
+.add-entry-btn:hover {
+    background-color: #0056b3;
+}
+
+.current-photo {
+    margin-top: 10px;
+    max-width: 100%;
+    border-radius: 10px;
+}

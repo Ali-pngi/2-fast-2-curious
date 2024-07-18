@@ -1,9 +1,9 @@
 const mongoose = require('mongoose')
 
-const carSchema = mongoose.Schema ({
+const carSchema = new mongoose.Schema({
     name: {
-      type:  String,
-      required: true,
+        type: String,
+        required: true,
     },
     make: {
         type: String,
@@ -24,10 +24,10 @@ const carSchema = mongoose.Schema ({
     location: {
         type: String,
     },
-    favouritedByUser: {
+    favouritedByUser: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User',
-    },
+    }],
     photo: {
         type: String,
     },
@@ -35,7 +35,6 @@ const carSchema = mongoose.Schema ({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User',
     }
-
 })
 
 const Car = mongoose.model('Car', carSchema)

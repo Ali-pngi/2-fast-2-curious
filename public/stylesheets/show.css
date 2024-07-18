@@ -1,11 +1,13 @@
-/* public/stylesheets/profile.css */
+
 
 body {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: gainsboro;
+    background-image: url(./assets/gas-station.gif);
+    background-size: cover;
+    background-repeat: no-repeat;
     font-family: 'Nunito', sans-serif;
 }
 
@@ -53,42 +55,29 @@ body {
     margin-bottom: 20px;
 }
 
-.car-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 20px;
-}
-
-.car-card {
-    background-color: #fff;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    padding: 20px;
+.car-details {
     text-align: center;
+    margin-bottom: 20px;
 }
 
-.car-card img {
+.car-details img {
     max-width: 100%;
     border-radius: 10px;
+    margin-bottom: 20px;
 }
 
-.car-card h3 {
-    font-size: 20px;
+.car-details p {
+    font-size: 18px;
     margin: 10px 0;
 }
 
-.car-card p {
-    font-size: 16px;
-    margin: 5px 0;
-}
-
-.actions {
+.favorite-form {
     display: flex;
-    justify-content: space-between;
-    margin-top: 10px;
+    justify-content: center;
+    margin-top: 20px;
 }
 
-.edit-btn, .delete-btn, .unfavorite-btn {
+.favorite-btn {
     padding: 10px 20px;
     border: none;
     border-radius: 5px;
@@ -96,28 +85,17 @@ body {
     cursor: pointer;
     text-decoration: none;
     display: inline-block;
-}
-
-.edit-btn {
     background-color: #007bff;
 }
 
-.edit-btn:hover {
+.favorite-btn:hover {
     background-color: #0056b3;
 }
 
-.delete-btn {
-    background-color: #dc3545;
-}
-
-.delete-btn:hover {
-    background-color: #c82333;
-}
-
-.unfavorite-btn {
+.favorite-btn.favorited {
     background-color: #ffc107;
 }
 
-.unfavorite-btn:hover {
+.favorite-btn.favorited:hover {
     background-color: #e0a800;
 }

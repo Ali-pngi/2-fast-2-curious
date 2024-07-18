@@ -1,25 +1,46 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><%= car.name %></title>
-    <link rel="stylesheet" href="/stylesheets/style.css" />
+    <link rel="stylesheet" href="/stylesheets/show.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Righteous&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Righteous&display=swap" rel="stylesheet">
 </head>
 <body>
-    <%- include('../partials/_navbar.ejs') %>
-    <h1><%= car.name %></h1>
-    <p>Make: <%= car.make %></p>
-    <p>Colour: <%= car.colour %></p>
-    <p>Drivetrain: <%= car.drivetrain %></p>
-    <p>Year: <%= car.year %></p>
-    <p>Location: <%= car.location %></p>
-    <p>Owner: <%= car.owner.username %></p>
-    <a href="/cars/<%= car._id %>/edit">Edit</a>
-    <form action="/cars/<%= car._id %>?_method=DELETE" method="POST">
-        <button type="submit">Delete</button>
-    </form>
-    <a href="/cars">Back to list</a>
+    <%- include('../partials/_navbar') %>
+    <div class="container">
+        <div class="sidebar">
+            <a href="/cars">Home page</a>
+            <a href="/cars/search">Search posts</a>
+            <a href="/profile">My posts</a>
+            <a href="/auth/sign-out">Sign out</a>
+        </div>
+        <div class="main-content">
+            <div class="title">
+                <h1><%= car.name %></h1>
+                <p>Posted by: <%= car.owner.username %></p>
+            </div>
+            <div class="car-details">
+                <% if (car.photo) { %>
+                    <img src="<%= car.photo %>" alt="Photo of <%= car.name %>">
+                <% } %>
+                <p>Make: <%= car.make %></p>
+                <p>Colour: <%= car.colour %></p>
+                <p>Drivetrain: <%= car.drivetrain %></p>
+                <p>Year: <%= car.year %></p>
+                <p>Location: <%= car.location %></p>
+            </div>
+            <form action="/cars/<%= car._id %>/favorite" method="POST" class="favorite-form">
+                <button type="submit" class="favorite-btn <%= car.favouritedByUser.includes(user._id) ? 'favorited' : '' %>">
+                    <%= car.favouritedByUser.includes(user._id) ? 'Unfavorite' : 'Favorite' %>
+                </button>
+            </form>
+        </div>
+    </div>
+    <script src="/scripts/show.js"></script>
 </body>
 </html>
+

@@ -9,15 +9,31 @@ router.get('/new', isSignedIn, (req, res) => {
     res.render('cars/new')
 })
 
-router.post('/', isSignedIn, upload, async (req, res, next) => {
+// Search for a specific car
+router.get('/search', async (req, res, next) => {
     try {
-        const car = new Car({
-            ...req.body,
-            owner: req.session.user._id,
-            photo: req.file ? `/uploads/${req.file.filename}` : undefined,
-        })
-        await car.save()
-        res.redirect('/cars')
+        const query = req.query.q
+        if (!query) {
+            const error = new Error('No search query provided')
+            error.status = 400
+            return next(error)
+        }
+
+        const searchRegex = new RegExp(query, 'i')
+        const yearQuery = parseInt(query)
+
+        const cars = await Car.find({
+            $or: [
+                { name: searchRegex },
+                { make: searchRegex },
+                { colour: searchRegex },
+                { drivetrain: searchRegex },
+                { year: !isNaN(yearQuery) ? yearQuery : undefined },
+                { location: searchRegex },
+            ]
+        }).populate('owner favouritedByUser')
+
+        res.render('cars/index', { cars })
     } catch (error) {
         next(error)
     }
@@ -118,60 +134,39 @@ router.delete('/:id', isSignedIn, async (req, res, next) => {
     }
 })
 
-// Search for a specific car
-router.get('/search', async (req, res, next) => {
+// Favorite a car
+router.post('/:id/favorite', isSignedIn, async (req, res, next) => {
     try {
-        const query = req.query.q
-        if (!query) {
-            const error = new Error('No search query provided')
-            error.status = 400
+        const car = await Car.findById(req.params.id)
+        if (!car) {
+            const error = new Error('Car not found')
+            error.status = 404
             return next(error)
         }
-
-        const searchRegex = new RegExp(query, 'i')
-        const yearQuery = parseInt(query)
-
-        const cars = await Car.find({
-            $or: [
-                { name: searchRegex },
-                { make: searchRegex },
-                { colour: searchRegex },
-                { drivetrain: searchRegex },
-                { year: !isNaN(yearQuery) ? yearQuery : undefined },
-                { location: searchRegex },
-            ]
-        }).populate('owner favouritedByUser')
-
-        res.render('cars/index', { cars })
+        if (!car.favouritedByUser.includes(req.session.user._id)) {
+            car.favouritedByUser.push(req.session.user._id)
+        }
+        await car.save()
+        res.redirect('/cars')
     } catch (error) {
         next(error)
     }
 })
 
-// Favourite a car
-router.post('/cars', isSignedIn, (req, res) => {
-    upload(req, res, (err) => {
-        if (err) {
-            
-            return res.status(400).render('error.ejs', { error: err.message })
+router.post('/:id/unfavorite', isSignedIn, async (req, res, next) => {
+    try {
+        const car = await Car.findById(req.params.id)
+        if (!car) {
+            const error = new Error('Car not found')
+            error.status = 404
+            return next(error)
         }
-        try {
-            const newCar = new Car({
-                ...req.body,
-                owner: req.session.user._id,
-                photo: req.file ? `/uploads/${req.file.filename}` : null,
-            })
-            newCar.save()
-                .then(() => res.redirect('/cars'))
-                .catch((dbError) => {
-                    
-                    res.status(500).render('error.ejs', { error: dbError.message })
-                })
-        } catch (error) {
-            
-            res.status(500).render('error.ejs', { error: error.message })
-        }
-    })
+        car.favouritedByUser = car.favouritedByUser.filter(userId => userId.toString() !== req.session.user._id.toString())
+        await car.save()
+        res.redirect('/profile')
+    } catch (error) {
+        next(error)
+    }
 })
 
 module.exports = router
