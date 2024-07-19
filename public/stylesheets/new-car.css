@@ -36,7 +36,7 @@ h1 {
     justify-content: space-around;
     width: 200px;
     height: 80vh;
-    background-image: url(./assets/backgrounds/night-road.jpg);
+    background-image: url(./assets/night-road.jpg);
     background-size: cover;
     background-repeat: no-repeat;
     background-position: bottom;

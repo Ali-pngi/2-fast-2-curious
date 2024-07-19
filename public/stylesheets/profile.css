@@ -36,7 +36,7 @@ h1 {
     flex-direction: column;
     justify-content: space-around;
     width: 200px;
-    background-image: url(./assets/backgrounds/night-road.jpg);
+    background-image: url(./assets/night-road.jpg);
     background-size: cover;
     background-repeat: no-repeat;
     background-position: bottom;
