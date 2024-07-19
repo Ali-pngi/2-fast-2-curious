@@ -4,7 +4,7 @@ body {
     align-items: center;
     min-height: 100vh;
     background-color: rgba(220, 220, 220, 0.8);
-    background-image: url(./assets/gas-station.gif);
+    background-image: url(https://res.cloudinary.com/dkhjyipkm/image/upload/v1721389394/gas-station_y02prp.gif);
     background-size: cover;
     font-family: 'Nunito', sans-serif;
     margin: 0;
@@ -43,7 +43,7 @@ h1 {
     flex-direction: column;
     justify-content: space-around;
     width: 200px;
-    background-image: url(./assets/night-road.jpg);
+    background-image: url(https://res.cloudinary.com/dkhjyipkm/image/upload/v1721389394/night-road_wdozog.jpg);
     background-size: cover;
     background-repeat: no-repeat;
     padding: 20px;
