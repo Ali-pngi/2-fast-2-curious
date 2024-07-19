@@ -42,7 +42,7 @@
     <script>
         document.querySelectorAll('.favorite-btn').forEach(button => {
             button.addEventListener('click', async (event) => {
-                event.preventDefault(); // Prevent the default form submission
+                event.preventDefault(); 
                 const form = event.target.closest('.favorite-form');
                 const carId = form.getAttribute('data-id');
                 const isFavorite = event.target.innerText === 'Unfavorite';
