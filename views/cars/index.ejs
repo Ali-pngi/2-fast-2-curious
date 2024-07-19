@@ -10,10 +10,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Righteous&display=swap" rel="stylesheet">
 </head>
 <body>
-    
     <div class="container">
         <div class="sidebar">
             <a href="/">Home page</a>
+            <a href="/cars">All cars</a>
             <a href="/cars/search">Search posts</a>
             <a href="/profile">My posts</a>
             <a href="/auth/sign-out">Sign out</a>
@@ -29,13 +29,38 @@
                     <% } %>
                     <p>Make: <%= car.make %></p>
                     <p>Colour: <%= car.colour %></p>
-                    <form action="/cars/<%= car._id %>/favorite" method="POST">
-                        <button type="submit">Favorite</button>
+                    <form class="favorite-form" data-id="<%= car._id %>">
+                        <button type="button" class="favorite-btn">
+                            <%= car.favouritedByUser.includes(user._id) ? 'Unfavorite' : 'Favorite' %>
+                        </button>
                     </form>
                 </div>
                 <% }) %>
             </div>
         </div>
     </div>
+    <script>
+        document.querySelectorAll('.favorite-btn').forEach(button => {
+            button.addEventListener('click', async (event) => {
+                event.preventDefault(); // Prevent the default form submission
+                const form = event.target.closest('.favorite-form');
+                const carId = form.getAttribute('data-id');
+                const isFavorite = event.target.innerText === 'Unfavorite';
+
+                const response = await fetch(`/cars/${carId}/${isFavorite ? 'unfavorite' : 'favorite'}`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                });
+
+                if (response.ok) {
+                    event.target.innerText = isFavorite ? 'Favorite' : 'Unfavorite';
+                } else {
+                    alert('Failed to update favorite status.');
+                }
+            });
+        });
+    </script>
 </body>
 </html>

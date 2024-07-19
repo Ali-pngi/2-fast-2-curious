@@ -10,7 +10,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Righteous&display=swap" rel="stylesheet">
 </head>
 <body>
-    
     <div class="container">
         <div class="sidebar">
             <a href="/">Home page</a>
@@ -60,8 +59,8 @@
                         <p>Drivetrain: <%= car.drivetrain %></p>
                         <p>Location: <%= car.location %></p>
                         <div class="actions">
-                            <form action="/cars/<%= car._id %>/unfavorite" method="POST" style="display: inline;">
-                                <button type="submit" class="unfavorite-btn">Unfavorite</button>
+                            <form class="unfavorite-form" data-id="<%= car._id %>" style="display: inline;">
+                                <button type="button" class="unfavorite-btn">Unfavorite</button>
                             </form>
                         </div>
                     </div>
@@ -69,5 +68,29 @@
             </div>
         </div>
     </div>
+
+    <script>
+        document.querySelectorAll('.unfavorite-btn').forEach(button => {
+            button.addEventListener('click', async (event) => {
+                event.preventDefault(); // Prevent the default form submission
+                const form = event.target.closest('.unfavorite-form');
+                const carId = form.getAttribute('data-id');
+
+                const response = await fetch(`/cars/${carId}/unfavorite`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                });
+
+                if (response.ok) {
+                    // Optionally, remove the car from the DOM or update the UI
+                    form.closest('.car-card').remove();
+                } else {
+                    alert('Failed to unfavorite car.');
+                }
+            });
+        });
+    </script>
 </body>
 </html>

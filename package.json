@@ -10,7 +10,8 @@
     "mongoose": "^8.5.0",
     "morgan": "^1.10.0",
     "multer": "^1.4.5-lts.1",
-    "nodemon": "^3.1.4"
+    "nodemon": "^3.1.4",
+    "serverless-http": "^3.2.0"
   },
   "name": "2-fast-2-curious",
   "version": "1.0.0",
