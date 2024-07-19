@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>All Cars</title>
-    <link rel="stylesheet" href="/stylesheets/cars.css">
+    <link rel="stylesheet" href="<%= imagePrefix %>/stylesheets/cars.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Righteous&display=swap" rel="stylesheet">
@@ -25,7 +25,7 @@
                 <div class="car-card">
                     <h2><a href="/cars/<%= car._id %>"><%= car.name %></a></h2>
                     <% if (car.photo) { %>
-                    <img src="<%= car.photo %>" alt="<%= car.name %>" class="car-photo">
+                    <img src="<%= imagePrefix %><%= car.photo %>" alt="<%= car.name %>" class="car-photo">
                     <% } %>
                     <p>Make: <%= car.make %></p>
                     <p>Colour: <%= car.colour %></p>

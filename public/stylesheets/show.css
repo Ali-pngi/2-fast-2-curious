@@ -5,7 +5,7 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-image: url(https://res.cloudinary.com/dkhjyipkm/image/upload/v1721389394/gas-station_y02prp.gif);
+    background-image: url(./assets/gas-station.gif);
     background-size: cover;
     background-repeat: no-repeat;
     font-family: 'Nunito', sans-serif;

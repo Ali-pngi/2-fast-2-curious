@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edit Car Post</title>
-    <link rel="stylesheet" href="/stylesheets/form.css">
+    <link rel="stylesheet" href="<%= imagePrefix %>/stylesheets/form.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Righteous&display=swap" rel="stylesheet">
@@ -12,39 +12,48 @@
 <body>
     <%- include('../partials/_navbar') %>
     <div class="container">
-        <div class="title">
-            <h1>Edit Car Post</h1>
+        <div class="sidebar">
+            <a href="/">Home page</a>
+            <a href="/cars">All cars</a>
+            <a href="/cars/search">Search posts</a>
+            <a href="/profile">My posts</a>
+            <a href="/auth/sign-out">Sign out</a>
         </div>
-        <form action="/cars/<%= car._id %>?_method=PUT" method="POST" enctype="multipart/form-data" class="car-form">
-            <div class="form-group">
-                <label for="name">Name</label>
-                <input type="text" id="name" name="name" value="<%= car.name %>" required>
+        <div class="main-content">
+            <div class="title">
+                <h1>Edit Car Post</h1>
             </div>
-            <div class="form-group">
-                <label for="make">Make</label>
-                <input type="text" id="make" name="make" value="<%= car.make %>" required>
-            </div>
-            <div class="form-group">
-                <label for="colour">Colour</label>
-                <input type="text" id="colour" name="colour" value="<%= car.colour %>" required>
-            </div>
-            <div class="form-group">
-                <label for="drivetrain">Drivetrain</label>
-                <input type="text" id="drivetrain" name="drivetrain" value="<%= car.drivetrain %>" required>
-            </div>
-            <div class="form-group">
-                <label for="location">Location</label>
-                <input type="text" id="location" name="location" value="<%= car.location %>">
-            </div>
-            <div class="form-group">
-                <label for="photo">Upload Photo</label>
-                <input type="file" id="photo" name="carImage">
-                <% if (car.photo) { %>
-                    <img src="<%= car.photo %>" alt="Current photo" class="current-photo">
-                <% } %>
-            </div>
-            <button type="submit" class="add-entry-btn">Update Entry</button>
-        </form>
+            <form action="/cars/<%= car._id %>?_method=PUT" method="POST" enctype="multipart/form-data" class="car-form">
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" name="name" value="<%= car.name %>" required>
+                </div>
+                <div class="form-group">
+                    <label for="make">Make</label>
+                    <input type="text" id="make" name="make" value="<%= car.make %>" required>
+                </div>
+                <div class="form-group">
+                    <label for="colour">Colour</label>
+                    <input type="text" id="colour" name="colour" value="<%= car.colour %>" required>
+                </div>
+                <div class="form-group">
+                    <label for="drivetrain">Drivetrain</label>
+                    <input type="text" id="drivetrain" name="drivetrain" value="<%= car.drivetrain %>" required>
+                </div>
+                <div class="form-group">
+                    <label for="location">Location</label>
+                    <input type="text" id="location" name="location" value="<%= car.location %>">
+                </div>
+                <div class="form-group">
+                    <label for="photo">Upload Photo</label>
+                    <input type="file" id="photo" name="carImage">
+                    <% if (car.photo) { %>
+                        <img src="<%= imagePrefix %><%= car.photo %>" alt="Current photo" class="current-photo">
+                    <% } %>
+                </div>
+                <button type="submit" class="add-entry-btn">Update Entry</button>
+            </form>
+        </div>
     </div>
 </body>
 </html>

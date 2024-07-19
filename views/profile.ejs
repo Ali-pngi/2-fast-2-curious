@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Profile</title>
-    <link rel="stylesheet" href="/stylesheets/profile.css">
+    <link rel="stylesheet" href="<%= imagePrefix %>/stylesheets/profile.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Righteous&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..10001,200..1000&family=Righteous&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="container">
@@ -28,7 +28,7 @@
                     <div class="car-card">
                         <h3><%= car.name %></h3>
                         <% if (car.photo) { %>
-                        <img src="<%= car.photo %>" alt="<%= car.name %>" class="car-photo">
+                        <img src="<%= imagePrefix %><%= car.photo %>" alt="<%= car.name %>" class="car-photo">
                         <% } %>
                         <p>Make: <%= car.make %></p>
                         <p>Colour: <%= car.colour %></p>
@@ -37,7 +37,7 @@
                         <p>Location: <%= car.location %></p>
                         <div class="actions">
                             <a href="/cars/<%= car._id %>/edit" class="edit-btn">Edit</a>
-                            <form action="/cars/<%= car._id %>?_method=DELETE" method="POST" style="display: inline;">
+                            <form action="/cars/<%= car._id %>?_method=DELETE" method="POST" style="display: inline">
                                 <button type="submit" class="delete-btn">Delete</button>
                             </form>
                         </div>
@@ -51,7 +51,7 @@
                     <div class="car-card">
                         <h3><%= car.name %></h3>
                         <% if (car.photo) { %>
-                        <img src="<%= car.photo %>" alt="<%= car.name %>" class="car-photo">
+                        <img src="<%= imagePrefix %><%= car.photo %>" alt="<%= car.name %>" class="car-photo">
                         <% } %>
                         <p>Make: <%= car.make %></p>
                         <p>Colour: <%= car.colour %></p>
@@ -59,7 +59,7 @@
                         <p>Drivetrain: <%= car.drivetrain %></p>
                         <p>Location: <%= car.location %></p>
                         <div class="actions">
-                            <form class="unfavorite-form" data-id="<%= car._id %>" style="display: inline;">
+                            <form class="unfavorite-form" data-id="<%= car._id %>" style="display: inline">
                                 <button type="button" class="unfavorite-btn">Unfavorite</button>
                             </form>
                         </div>
@@ -72,25 +72,26 @@
     <script>
         document.querySelectorAll('.unfavorite-btn').forEach(button => {
             button.addEventListener('click', async (event) => {
-                event.preventDefault(); // Prevent the default form submission
-                const form = event.target.closest('.unfavorite-form');
-                const carId = form.getAttribute('data-id');
+                event.preventDefault() // Prevent the default form submission
+                const form = event.target.closest('.unfavorite-form')
+                const carId = form.getAttribute('data-id')
 
                 const response = await fetch(`/cars/${carId}/unfavorite`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
                     },
-                });
+                })
 
                 if (response.ok) {
                     // Optionally, remove the car from the DOM or update the UI
-                    form.closest('.car-card').remove();
+                    form.closest('.car-card').remove()
                 } else {
-                    alert('Failed to unfavorite car.');
+                    alert('Failed to unfavorite car.')
                 }
-            });
-        });
+            })
+        })
     </script>
 </body>
 </html>
+

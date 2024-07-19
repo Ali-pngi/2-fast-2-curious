@@ -4,43 +4,39 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Landing Page</title>
-    <link rel="stylesheet" href="/stylesheets/home.css">
-    <link rel="stylesheet" href="/stylesheets/navbar.css">
+    <link rel="stylesheet" href="<%= imagePrefix %>/stylesheets/home.css">
+    <link rel="stylesheet" href="<%= imagePrefix %>/stylesheets/navbar.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Faster+One&display=swap" rel="stylesheet">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Righteous&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Faster+One&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Righteous&display=swap" rel="stylesheet">
 </head>
 <body>
-    
-        <header>
-            <nav>
-                <%- include('partials/_navbar') %>
-            </nav>
-            <div class="title">
-                <h1 id="main-title">2-Fast-2-Curious</h1>
-                <p>A place to log and keep track of the cars you see out and about! </p>
+    <header>
+        <nav>
+            <%- include('partials/_navbar') %>
+        </nav>
+        <div class="title">
+            <h1 id="main-title">2-Fast-2-Curious</h1>
+            <p>A place to log and keep track of the cars you see out and about!</p>
+        </div>
+    </header>
+    <main>
+        <% if (user) { %>
+            <div class="welcome-message">
+                <h2>Welcome to the app <%= user.username %>!</h2>
             </div>
-        </header>
-        <main>
-            <% if (user) { %>
-                <div class="welcome-message">
-                    <h2>Welcome to the app <%= user.username %>!</h2>
-                </div>
-   
-                <% } else { %>
-                    <div class="welcome-message">
+        <% } else { %>
+            <div class="welcome-message">
                 <h2>Welcome to the app, get signed in to start!</h2>
-                    </div>
-
-                <% } %>
-            <div class="auth-buttons">
-                <a href="/auth/sign-in" class="button">Login</a>
-                <a href="/auth/sign-up" class="button">Sign up</a>
             </div>
-        </main>
-    
+        <% } %>
+        <div class="auth-buttons">
+            <a href="/auth/sign-in" class="button">Login</a>
+            <a href="/auth/sign-up" class="button">Sign up</a>
+        </div>
+    </main>
 </body>
 </html>
