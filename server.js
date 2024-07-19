@@ -36,6 +36,11 @@ app.use(
   })
 )
 
+app.use((req, res, next) => {
+    res.locals.imagePrefix = process.env.PRODUCTION === 'true' ? '/public' : ''
+    next()
+  })
+
 app.use(express.static(path.join(__dirname, "public")))
 
 app.use((req, res, next) => {
