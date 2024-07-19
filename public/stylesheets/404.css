@@ -1,0 +1,97 @@
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    background-color: rgba(220, 220, 220, 0.8);
+    background-image: url(./assets/gas-station.gif);
+    background-size: cover;
+    font-family: 'Nunito', sans-serif;
+    margin: 0;
+}
+
+h1 {
+    background-color: rgba(220, 220, 220, 0.8);
+    border-radius: 50px;
+    font-family: "Faster One", system-ui;
+    font-weight: 200;
+    font-style: normal;
+    padding: 10px;
+    text-align: center;
+}
+
+.container {
+    display: flex;
+    width: 80%;
+    min-height: 80vh;
+    margin: 20px auto;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+.Error-image{
+    background-image: url(./assets/car-crash.gif);
+    max-width: 100%;
+    height: auto;
+    margin: 20px 0;
+}
+
+.sidebar {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 200px;
+    background-image: url(./assets/backgrounds/night-road.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    padding: 20px;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.sidebar a {
+    display: block;
+    padding: 10px;
+    margin: 10px 0;
+    text-decoration: none;
+    color: #333;
+    border-radius: 5px;
+    background-color: #e9ecef;
+    text-align: center;
+    font-weight: bold;
+}
+
+.sidebar a:hover {
+    background-color: #ced4da;
+}
+
+.main-content {
+    flex: 1;
+    padding: 20px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.main-content p {
+    font-size: 18px;
+    margin: 20px 0;
+}
+
+.home-link {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #333;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.home-link:hover {
+    background-color: #555;
+}

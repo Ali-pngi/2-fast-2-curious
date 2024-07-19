@@ -1,6 +1,6 @@
 body {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
     min-height: 100vh;
     background-color: rgba(220, 220, 220, 0.8);
@@ -25,7 +25,6 @@ h1 {
     width: 80%;
     min-height: 80vh;
     margin: 20px auto;
-    background-color: rgba(255, 255, 255, 0.8);
     border-radius: 15px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     overflow: hidden;
@@ -36,11 +35,14 @@ h1 {
     flex-direction: column;
     justify-content: space-around;
     width: 200px;
+    height: 80vh;
     background-image: url(./assets/backgrounds/night-road.jpg);
     background-size: cover;
     background-repeat: no-repeat;
+    background-position: bottom;
     padding: 20px;
     box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    border-radius: 15px;
 }
 
 .sidebar a {
@@ -79,11 +81,16 @@ h1 {
     flex-direction: column;
     align-items: center;
     width: 100%;
+   
 }
 
 .form-group {
     margin-bottom: 15px;
     width: 80%;
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 5px;
+    padding-right: 30px;
+    border-radius: 15px;
 }
 
 .form-group label {
