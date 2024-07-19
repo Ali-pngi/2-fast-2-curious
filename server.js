@@ -8,6 +8,7 @@ const morgan = require('morgan')
 const path = require("path")
 const session = require('express-session')
 const MongoStore = require('connect-mongo')
+const passUserToView = require('./middleware/passUserToView');
 
 const authController = require('./controllers/auth.js')
 const carsController = require('./controllers/cars.js')
@@ -19,27 +20,29 @@ const port = process.env.PORT ? process.env.PORT : '3000'
 mongoose.connect(process.env.MONGODB_URI)
 
 mongoose.connection.on('connected', () => {
-  console.log(`Connected to MongoDB ${mongoose.connection.name}.`)
+    console.log(`Connected to MongoDB ${mongoose.connection.name}.`)
 })
 
 app.use(express.urlencoded({ extended: false }))
 app.use(methodOverride('_method'))
 app.use(morgan('dev'))
 app.use(
-  session({
-    secret: process.env.SESSION_SECRET,
-    resave: false,
-    saveUninitialized: true,
-    store: MongoStore.create({
-      mongoUrl: process.env.MONGODB_URI
+    session({
+        secret: process.env.SESSION_SECRET,
+        resave: false,
+        saveUninitialized: true,
+        store: MongoStore.create({
+            mongoUrl: process.env.MONGODB_URI
+        })
     })
-  })
 )
+
+app.use(passUserToView);
 
 app.use((req, res, next) => {
     res.locals.imagePrefix = process.env.PRODUCTION === 'true' ? '/public' : ''
     next()
-  })
+})
 
 app.use(express.static(path.join(__dirname, "public")))
 

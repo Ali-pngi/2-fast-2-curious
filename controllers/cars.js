@@ -75,13 +75,13 @@ router.post('/', isSignedIn, upload, async (req, res, next) => {
             ...req.body,
             owner: req.session.user._id,
             photo: req.file ? `/uploads/${req.file.filename}` : undefined,
-        });
-        await car.save();
-        res.redirect('/cars');
+        })
+        await car.save()
+        res.redirect('/cars')
     } catch (error) {
-        next(error);
+        next(error)
     }
-});
+})
 
 // Edit a specific car
 router.get('/:id/edit', isSignedIn, async (req, res, next) => {

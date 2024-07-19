@@ -18,14 +18,14 @@ function checkFileType(file, cb) {
   if (extname && mimetype) {
     return cb(null, true)
   } else {
-    return cb(new Error('Only .jpeg, .jpg, .png, .gif formats allowed!'), false)
+    cb('Error: Images Only!')
   }
 }
 
 // Init upload
 const upload = multer({
   storage: storage,
-  limits: { fileSize: 1000000000 }, 
+  limits: { fileSize: 1000000 }, // 1MB
   fileFilter: (req, file, cb) => {
     checkFileType(file, cb)
   }

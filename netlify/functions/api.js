@@ -38,7 +38,7 @@ app.use(
 )
 
 app.use(express.static(path.join(__dirname, "public")))
-app.use(passUserToView)  // Add the middleware here
+app.use(passUserToView)  
 
 app.set('view engine', 'ejs')
 app.set('views', './views')
