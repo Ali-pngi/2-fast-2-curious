@@ -8,7 +8,7 @@ const morgan = require('morgan')
 const path = require("path")
 const session = require('express-session')
 const MongoStore = require('connect-mongo')
-const passUserToView = require('./middleware/passUserToView');
+// const passUserToView = require('./middleware/passUserToView');
 
 const authController = require('./controllers/auth.js')
 const carsController = require('./controllers/cars.js')
@@ -37,7 +37,7 @@ app.use(
     })
 )
 
-app.use(passUserToView);
+// app.use(passUserToView);
 
 app.use((req, res, next) => {
     res.locals.imagePrefix = process.env.PRODUCTION === 'true' ? '/public' : ''
