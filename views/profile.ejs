@@ -72,7 +72,7 @@
     <script>
         document.querySelectorAll('.unfavorite-btn').forEach(button => {
             button.addEventListener('click', async (event) => {
-                event.preventDefault() // Prevent the default form submission
+                event.preventDefault() 
                 const form = event.target.closest('.unfavorite-form')
                 const carId = form.getAttribute('data-id')
 
@@ -84,7 +84,7 @@
                 })
 
                 if (response.ok) {
-                    // Optionally, remove the car from the DOM or update the UI
+                    
                     form.closest('.car-card').remove()
                 } else {
                     alert('Failed to unfavorite car.')
