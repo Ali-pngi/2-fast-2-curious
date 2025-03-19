@@ -1,4 +1,4 @@
-/* Common styles for navbar and sidebar */
+
 .navbar, .sidebar {
     display: flex;
     flex-direction: column;
@@ -19,7 +19,7 @@
     background-color: #575757;
 }
 
-/* Navbar specific styles */
+
 .navbar {
     flex-direction: row;
     justify-content: space-around;

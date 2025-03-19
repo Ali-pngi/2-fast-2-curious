@@ -1,4 +1,3 @@
-// public/scripts/profile.js
 
 document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('.delete-form').forEach(form => {

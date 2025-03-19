@@ -1,4 +1,4 @@
-/* General Styles */
+
 body {
     display: flex;
     flex-direction: column;
@@ -151,6 +151,8 @@ input {
     font-weight: 200;
     font-style: normal;
 }
+
+
 
 
 

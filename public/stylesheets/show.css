@@ -21,11 +21,21 @@ body {
     overflow: hidden;
 }
 
+
 .sidebar {
-    width: 20%;
-    background-color: #f8f9fa;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 200px;
+    background-image: url(./assets/night-road.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: bottom;
     padding: 20px;
     box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    height: 100vh;
 }
 
 .sidebar a {

@@ -28,7 +28,7 @@ h1 {
 .container {
     display: flex;
     width: 80%;
-    min-height: 80vh;
+    min-height: 95vh;
     margin: 20px auto;
     border-radius: 15px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -39,7 +39,7 @@ h1 {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-    width: 200px; /* Set a fixed width for the sidebar */
+    width: 200px; 
     background-image: url(./assets/night-road.jpg);
     background-size: cover;
     background-repeat: no-repeat;

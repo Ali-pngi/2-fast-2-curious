@@ -68,3 +68,19 @@ form{
     border-radius: 15px;
     background-color: rgb(220, 220, 220, 0.85)
 }
+
+
+
+.sidebar{ 
+    background-color: rgb(220, 220, 220, 0.85);
+    align-content: center;
+    display: flex;
+    justify-content: space-evenly;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+form[action="/auth/sign-in"] {
+    display: flex;
+    align-items: center;
+}

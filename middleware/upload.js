@@ -13,10 +13,18 @@ const storage = new CloudinaryStorage({
   params: {
     folder: '2-fast-2-curious',
     allowed_formats: ['jpg', 'png', 'jpeg', 'gif'],
-    upload_preset: 'cars-upload'
+    transformation: [
+      { width: 1000, height: 1000, crop: 'limit' }
+    ],
+     
   }
 });
 
-const uploadMiddleware = multer({ storage: storage }).single('carImage');
+const uploadMiddleware = multer({ 
+  storage: storage,
+  limits: {
+    fileSize: 5 * 1024 * 1024 
+  }
+}).single('carImage');
 
 module.exports = uploadMiddleware;

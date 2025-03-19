@@ -16,7 +16,7 @@ h1 {
     font-family: "Faster One", system-ui;
     font-weight: 200;
     font-style: normal;
-    padding: 10px;
+    padding: 15px;
     text-align: center;
 }
 
@@ -35,7 +35,7 @@ h1 {
     flex-direction: column;
     justify-content: space-around;
     width: 200px;
-    height: 80vh;
+    height: 90vh;
     background-image: url(./assets/night-road.jpg);
     background-size: cover;
     background-repeat: no-repeat;
@@ -63,6 +63,7 @@ h1 {
 
 .main-content {
     flex: 1;
+    max-height: 90vh;
     padding: 20px;
     overflow-y: auto;
     display: flex;
@@ -73,7 +74,7 @@ h1 {
 .title {
     text-align: center;
     font-size: 24px;
-    margin-bottom: 20px;
+    
 }
 
 .car-form {
@@ -81,7 +82,6 @@ h1 {
     flex-direction: column;
     align-items: center;
     width: 100%;
-   
 }
 
 .form-group {
@@ -100,10 +100,12 @@ h1 {
 }
 
 .form-group input[type="text"], .form-group input[type="file"] {
-    width: 100%;
+    width: 50%;  
     padding: 10px;
     border: 1px solid #ddd;
     border-radius: 5px;
+    margin: 0 auto;  
+    display: block;  
 }
 
 .add-entry-btn {
